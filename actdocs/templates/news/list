@@ -1,0 +1,18 @@
+[% WRAPPER ui title = loc("News") %]
+
+[% IF news.size %]
+  [% FOREACH item = news %]
+  <div class="news-entry">
+   <h3 class="news-header">
+    <span class="news-date">[% date_format(item.datetime, 'date_iso') %]</span>
+    <span class="news-title">[% item.title %]</span>
+    <span class="news-author">[% user_info(item.user) %]</span>
+   </h3>
+   <div class="news-text">
+    [% item.content %]
+   </div>
+  </div>
+  [% END %]
+[% END %]
+
+[% END %]

@@ -1,0 +1,46 @@
+[% WRAPPER ui title = global.conference.name %]
+
+<p>The DC and Baltimore Perlmongers invite you to join us for a workshop in Silver Spring, MD, on Saturday May 3, followed by a hackathon on Sunday May 4! The workshop will have two tracks of speakers, discussing innovative, exciting, and fun real-world usage of Perl. The hackathon will be more free-form project time, though we may have some organized hands-on activities for those interested.</p>
+
+<p>Registration is $25 prior to April 1st, and $50 afterwards. Free admission is available for students and the currently unemployed.</p>
+
+<p>Questions? Comments? Email us! <a href="mailto:dcbpw-organizers@googlegroups.com">dcbpw-organizers@googlegroups.com</a>
+
+<div id=sponsors>
+  <h2>Sponsors and Partners</h2>
+  <ul>
+    <li><a href="http://baltimore.pm.org/">Baltimore Perl Mongers</a></li>
+    <li><a href="http://dc.pm.org/">DC Perl Mongers</a></li>
+    <li><a href="http://www.perlfoundation.org/">The Perl Foundation</a></li>
+    <li><a href="http://perlweekly.com/">Perl Weekly</a></li>
+  </ul>
+</div>
+ 
+[% news = global.news(3);
+   IF news.size > 2;
+     more = news.pop;
+   END;
+ %]
+
+[% IF news.size %]
+[% FOREACH item = news %]
+<div class="news-entry">
+ <h3 class="news-header">
+  <span class="news-date">[% date_format(item.datetime, 'date_iso') %]</span>
+  <span class="news-title">[% item.title %]</span>
+  <span class="news-author">[% user_info(item.user) %]</span>
+ </h3>
+ <div class="news-text">
+  [% item.content %]
+ </div>
+</div>
+[% END %]
+[% END %]
+
+[% IF more %]
+<p>
+ <a href="[% make_uri('news') %]" class="news-link">Older announcements</a>
+</p>
+[% END %]
+
+[% END %]

@@ -1,0 +1,51 @@
+[% WRAPPER menus/section %]
+  <a href="http://dcbpw.org/dcbpw2014/">DCBPW 2014</a>
+[% END %]
+[% WRAPPER menus/item %]
+  <a href="[% make_uri('dcbpw.ics') %]">
+    <span class="icon"><img src="[% make_uri('calendar-icon.png') %]"></span>
+    When: Sat-Sun, May 3-4, 2014
+  </a>
+[% END %]
+[% WRAPPER menus/item %]
+  <a href="[% make_uri('venue.html') %]">
+    <span class="icon"><img src="[% make_uri('map-place-icon.png') %]"></span>
+    Location: Silver Spring, MD
+  </a>
+[% END %]
+[% WRAPPER menus/item %]
+  <a href="[% make_uri('hotel.html') %]">
+    <span class="icon"><img src="[% make_uri('map-place-icon.png') %]"></span>
+    Stay: Hotel/Travel Info
+  </a>
+[% END %]
+[% WRAPPER menus/item %]
+  <a href="[% make_uri('news') %]">
+    <span class="icon"><img src="[% make_uri('rss.jpg') %]"></span>
+    {{News}}
+  </a>
+  (<a href="[% global.request.base_url %][% make_uri_info( 'atom', global.request.language ) %].xml">feed</a>)
+[% END %]
+[% WRAPPER menus/item %]
+  <a href="[% make_uri('wiki') %]">
+    <span class="icon"><img src="[% make_uri('link.jpg') %]"></span>
+    Wiki
+  </a> (community content)
+  <ul>
+    <li>→ <a href="[% make_uri('wiki?node=LocalTransit') %]">LocalTransit</a></li>
+    <li>→ <a href="[% make_uri('wiki?node=VenueDetail') %]">VenueDetail</a> (Wifi)</li>
+    <li>→ <a href="[% make_uri('wiki?node=SaturdayDinner') %]">SaturdayDinner</a></li>
+  </ul>
+[% END %]
+[% IF global.request.user.has_registered %]
+  [% IF global.config.payment_type != "NONE" %]
+    [% IF global.config.payment_open %]
+        [% UNLESS global.request.user.has_paid %]
+          [% WRAPPER menus/item %]
+            <a href="[% make_uri('purchase') %]">Purchase Ticket</a>
+          [% END %]
+        [% END %]
+    [% END %]
+  [% END %]
+[% END %]
+

@@ -1,0 +1,10 @@
+<div class="news-entry">
+ <h3 class="news-header">
+  <span class="news-date">[% date_format(datetime, 'date_iso') %]</span>
+  <span class="news-title">[% title %]</span>
+  <span class="news-author">[% user_info(user) %]</span>
+ </h3>
+ <div class="news-text">
+  [% content %]
+ </div>
+</div>
