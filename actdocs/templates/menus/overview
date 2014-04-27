@@ -20,6 +20,12 @@
   </a>
 [% END %]
 [% WRAPPER menus/item %]
+  <a href="[% make_uri('sponsors.html') %]">
+    <span class="icon">♥</span>
+    Support our Sponsors!
+  </a>
+[% END %]
+[% WRAPPER menus/item %]
   <a href="[% make_uri('news') %]">
     <span class="icon"><img src="[% make_uri('rss.jpg') %]"></span>
     {{News}}

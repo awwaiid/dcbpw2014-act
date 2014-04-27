@@ -1,0 +1,72 @@
+[% WRAPPER ui title = title %]
+
+  [% RETURN UNLESS talks.size %]
+  [% INCLUDE js/mytalks.js %]
+
+  [% FOREACH t = talks.sort('title') %]
+          
+    <h2 style="clear: right">
+      [% IF global.request.user.has_registered %]
+      <input type="checkbox"
+             name="mt-[% t.talk_id %]"
+             value="[% t.talk_id %]"
+             [% IF global.request.user.is_my_talk(t.talk_id) %]
+               title = "{{remove from personal schedule}}"
+               checked = "checked"
+             [% ELSE %]
+               title = "{{add to personal schedule}}"
+             [% END %]
+      />
+      [% END %]
+      [% talk_link(t) %]
+      [% talk_modify_link(t) %]
+    </h2>
+
+    <p>
+      [%- IF t.user.photo_name %]
+        <img src="/[% global.config.general_dir_photos %]/[% t.user.photo_name %]" border="0" alt="Photo" align=right style="margin-left: 1em; width: 200px">
+      [%- ELSE %]
+        <img src="http://www.gravatar.com/avatar/[% t.user.md5_email %]?s=100&d=404" border="0" alt="Photo" align=right style="margin-left: 1em; width: 200px">
+      [% END %]
+      [% user_info(t.user) %]
+      -
+      [% IF t.lightning %]
+        {{lightning}}
+      [% ELSE %]
+        [% t.duration %] {{minutes}}
+      [% END %]
+      [% IF t.datetime %]
+        -
+        [% date_format(t.datetime, 'datetime_short') %]
+      [% END %]
+      [% IF t.url_abstract %]
+        -
+        <a href="[% t.url_abstract %]">{{abstract (link)}}</a>
+      [% END %]
+      <!--
+      [% IF t.url_talk %]
+        -
+        <a href="[% t.url_talk %]">{{talk (link)}}</a>
+      [% END %]
+      -->
+    </p>
+
+    <p>
+      [% expand(t.chunked_abstract) | html_line_break %]
+    </p>
+
+    [%- IF t.user.bio.keys.size %]
+      [% FOREACH lang = t.user.bio.keys %]
+        <i><b>Speaker Bio:</b>
+          [% t.user.bio.$lang | replace('\n', '<br />') %]
+        </i>
+      [% END %]
+    [% END %]
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+      
+  [% END %]
+ 
+
+[% END %]

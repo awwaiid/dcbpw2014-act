@@ -4,7 +4,7 @@
 </a>
 [% END %]
 [% WRAPPER menus/item %]
-<a href="[% make_uri('favtalks') %]">
- {{Favorite Talks}}
+<a href="[% make_uri('proceedings') %]">
+  List of Talks
 </a>
 [% END %]

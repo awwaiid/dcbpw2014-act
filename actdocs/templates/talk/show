@@ -1,0 +1,9 @@
+[% WRAPPER ui title = title %]
+
+<h2>[% title %]</h2>
+
+<br/><br/>
+
+[% PROCESS core/talk/show %]
+
+[% END %]

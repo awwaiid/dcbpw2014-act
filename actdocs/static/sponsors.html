@@ -1,0 +1,21 @@
+[% WRAPPER ui title = global.conference.name %]
+
+<p>This workshop couldn't be done without our fabulous sponsors!</p>
+ 
+[% FOREACH item = global.news %]
+[% IF item.title.search('Sponsor') %]
+<div class="news-entry">
+ <h3 class="news-header">
+  <span class="news-date">[% date_format(item.datetime, 'date_iso') %]</span>
+  <span class="news-title">[% item.title %]</span>
+  <span class="news-author">[% user_info(item.user) %]</span>
+ </h3>
+ <div class="news-text">
+  [% item.content %]
+ </div>
+</div>
+[% END %]
+[% END %]
+
+
+[% END %]
